@@ -1,0 +1,6 @@
+{
+  "mag": "mag.nii.gz",
+  "phase": "phase.nii.gz",
+  "temporal_phase": 1,
+  "phase_filter_width": 10
+}

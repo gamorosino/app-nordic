@@ -1,0 +1,65 @@
+{
+  "name": "NORDIC denoising (Python)",
+  "github": "gamorosino/app-nordic",
+  "desc": "NORDIC (NOise reduction with DIstribution Corrected PCA): locally low-rank denoising of complex (magnitude + phase) fMRI/dMRI data. Python translation of the MATLAB NORDIC_Raw. For full documentation see https://github.com/JimJam07/NORDIC-python and https://github.com/SteenMoeller/NORDIC_Raw. Licensed by the Regents of the University of Minnesota (US 10,768,260): educational/research use by non-profit institutions and US government agencies only; not to be sold or redistributed without approval (umotc@umn.edu).",
+  "invoke": "python3 run_nordic.py --mag {mag} --phase {phase} --out out_dir --temporal_phase {temporal_phase} --phase_filter_width {phase_filter_width} --save_gfactor_map 0",
+  "config": {
+    "mag": {
+      "type": "input",
+      "file_id": "bold",
+      "input_id": "mag"
+    },
+    "phase": {
+      "type": "input",
+      "file_id": "bold",
+      "input_id": "phase"
+    },
+    "temporal_phase": {
+      "id": "temporal_phase",
+      "type": "integer",
+      "placeholder": "1",
+      "advanced": true,
+      "desc": "Temporal phase correction mode (see upstream docs).",
+      "default": 1
+    },
+    "phase_filter_width": {
+      "id": "phase_filter_width",
+      "type": "integer",
+      "placeholder": "10",
+      "advanced": true,
+      "desc": "Phase filter width (see upstream docs).",
+      "default": 10
+    }
+  },
+  "inputs": [
+    {
+      "id": "mag",
+      "datatype": "neuro/func/task",
+      "datatype_tags": [],
+      "optional": false,
+      "multi": false,
+      "advanced": false
+    },
+    {
+      "id": "phase",
+      "datatype": "neuro/func/task",
+      "datatype_tags": [
+        "phase"
+      ],
+      "optional": false,
+      "multi": false,
+      "advanced": false
+    }
+  ],
+  "outputs": [
+    {
+      "id": "denoised",
+      "desc": "NORDIC-denoised BOLD (magnitude).",
+      "datatype": "neuro/func/task",
+      "datatype_tags": [
+        "nordic"
+      ],
+      "archive": true
+    }
+  ]
+}
