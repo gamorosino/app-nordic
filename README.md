@@ -1,5 +1,44 @@
 # app-nordic
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Denoises BOLD fMRI from magnitude and phase data with NORDIC (locally low-rank PCA) using the NORDIC-python translation, and outputs the denoised magnitude BOLD.**
+
+Runs run_nordic.py from NORDIC-python, which estimates g-factor noise maps with an MPPCA pass and applies locally low-rank denoising. Use it on raw complex-valued BOLD before other preprocessing. Needs matching magnitude and phase series. NORDIC is licensed for non-profit research and educational use only.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/func/task` ×2 |
+| 📤 **Outputs** | `neuro/func/task` |
+| 🐳 **Container** | `gamorosino/app-nordic:1.0` |
+| ⚙️ **Resources** | 32 GB memory · 4 h walltime |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.982](https://doi.org/10.25663/brainlife.app.982) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `mag` | `neuro/func/task` | yes | Magnitude BOLD time series. |
+| `phase` | `neuro/func/task` (phase) | yes | Phase BOLD time series matching the magnitude. |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `denoised` | `neuro/func/task` | NORDIC-denoised BOLD (magnitude). |
+
+<details>
+<summary><b>⚙️ Parameters</b> (2)</summary>
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `temporal_phase` | integer | `1` | Temporal phase correction mode (see upstream docs). |
+| `phase_filter_width` | integer | `10` | Phase filter width (see upstream docs). |
+
+</details>
+
+<!-- brainlife-app:end -->
+
 Brainlife.io app wrapping **NORDIC** (NOise reduction with DIstribution Corrected PCA) denoising, using the Python translation [NORDIC-python](https://github.com/JimJam07/NORDIC-python) of the original MATLAB [NORDIC_Raw](https://github.com/SteenMoeller/NORDIC_Raw).
 
 **For documentation, parameters and method details, always refer to the original repository: https://github.com/JimJam07/NORDIC-python**
